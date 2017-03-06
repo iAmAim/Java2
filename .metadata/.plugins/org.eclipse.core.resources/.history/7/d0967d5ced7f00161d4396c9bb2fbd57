@@ -1,0 +1,16 @@
+package com.producerconsumer;
+
+import java.util.Scanner;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		
+		System.out.println("Producer consumer program: ");
+		Buffer buffer = new Buffer();
+		Thread prodThread =new Thread( new Producer(buffer));
+		Thread prodThread =new Thread( new Producer(buffer));
+	}
+
+}

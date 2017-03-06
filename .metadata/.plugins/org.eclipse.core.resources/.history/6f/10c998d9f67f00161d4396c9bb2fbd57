@@ -1,0 +1,30 @@
+package com.producerconsumer;
+
+public class Buffer {
+
+	private StringBuffer data = new StringBuffer();
+
+	public synchronized String getMessage() {
+		String returnVal = null;
+		try {
+			wait();
+			returnVal = data.toString();
+			data = new StringBuffer();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		return returnVal;
+
+	}
+	
+	public final String getName(){
+		return "Kelly Parker";
+	}
+
+	public synchronized void addMessage(String message) {
+		this.data.append(message);
+		notifyAll();
+	}
+
+}

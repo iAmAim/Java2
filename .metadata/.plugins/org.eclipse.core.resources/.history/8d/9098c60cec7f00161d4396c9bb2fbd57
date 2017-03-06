@@ -1,0 +1,16 @@
+package com.producerconsumer;
+
+public class Buffer {
+	
+	private StringBuffer data = new StringBuffer();
+	public synchronized String getMessage(){
+		
+		return null;
+		
+	}
+	
+	public synchronized void addMessage(String message){
+		this.data.append(message)
+	}
+
+}

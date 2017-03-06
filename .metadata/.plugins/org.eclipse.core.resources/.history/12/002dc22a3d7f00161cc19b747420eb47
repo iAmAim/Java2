@@ -1,0 +1,113 @@
+package com.list;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Driver {
+
+	public static void main(String[] args) {
+
+		MyArrayList<String> list = new MyArrayList<>();
+		list.add("asdf");
+
+		System.out.println("\n\n Playing with Get and PUt principle");
+		Driver driver = new Driver();
+		// Add Contractors
+		List<Contractor> contractorList = new ArrayList<>();
+		Contractor contractor1 = driver.new Contractor("C.Nick");
+		contractorList.add(contractor1);
+		displayPeople(contractorList);
+
+		// Add Interns
+		List<Intern> internList = new ArrayList<>();
+		Intern intern = driver.new Intern("Intern.Sally");
+		internList.add(intern);
+		displayPeople(internList);
+
+		// Use Generic copyList method
+		List<Employee> employeeSourceList = new ArrayList<>();
+		List<Person> myDestList = new ArrayList<>();
+		List<Contractor> empListDestination = new ArrayList<>();
+		
+		employeeSourceList.add(driver.new Employee("Contr.Edgar"));
+		//mySrcList.add(driver.new Intern("Intern.Paul"));
+		
+		copyList(employeeSourceList, empListDestination);
+		print(myDestList);
+
+	}
+
+	public static void copyList(List<? extends Person> src, List<? super Person> dest) {
+
+		Iterator<? extends Person> it = src.iterator();
+		while (it.hasNext()) {
+			dest.add(it.next());
+		}
+
+	}
+
+	public static void displayPeople(List<? extends Person> people) {
+
+		for (Person p : people) {
+			System.out.println(p.toString());
+		}
+	}
+
+	public static <T> void print(List<T> list) {
+		System.out.println("\n List contains");
+		for (T t : list) {
+			System.out.println(t);
+		}
+
+	}
+
+	class Person {
+		String name;
+
+		Person(String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String toString() {
+			return "Some Person named " + name;
+		}
+
+	}
+
+	class Employee extends Person {
+
+		Employee(String name) {
+			super(name);
+		}
+	}
+
+	class Contractor extends Employee {
+
+		Contractor(String name) {
+			super(name);
+		}
+	}
+
+	class Partimer extends Employee {
+
+		Partimer(String name) {
+			super(name);
+		}
+	}
+
+	class Intern extends Employee {
+
+		public Intern(String name) {
+			super(name);
+		}
+
+		@Override
+		public String toString() {
+
+			return "Some Intern named " + super.name;
+		}
+	}
+
+}

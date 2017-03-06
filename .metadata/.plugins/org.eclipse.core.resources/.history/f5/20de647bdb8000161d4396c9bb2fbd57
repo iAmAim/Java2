@@ -1,0 +1,46 @@
+package withexecutors;
+
+
+import java.io.Serializable;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+
+import client.Computable;
+
+public class Client implements  Computable, Serializable, Callable<Integer> {
+	int number;
+	private static final long serialVersionUID = 1L;
+
+	public Client(int number) {
+		this.number = number;
+	}
+
+	@Override
+	public String toString() {
+		return "Client [number=" + number + "]";
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	@Override
+	public Integer call() throws Exception {
+		
+		return compute();
+	}
+
+	/** Resource intensive method 
+	 * @throws InterruptedException */
+	public Integer compute() throws InterruptedException {
+		// INSERT  algorithm that is resource-intensive
+		System.out.println("\t\tRunning compute() method of Client");
+		return this.number * 1000;
+
+	}
+
+}

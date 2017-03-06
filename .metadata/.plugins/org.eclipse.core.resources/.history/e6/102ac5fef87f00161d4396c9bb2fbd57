@@ -1,0 +1,24 @@
+package com.producerconsumer;
+
+public class Consumer implements Runnable{
+
+	private Buffer buffer;
+	private String strDecorator;
+	
+	public Consumer(Buffer buffer, String decorator) {
+		this.buffer = buffer;
+		this.strDecorator = decorator;
+	}
+
+	@Override
+	public void run() {
+		
+		String data = null;
+		while(!("end".equals(data))){
+			data = buffer.getMessage();
+			System.out.println("Read: " + strDecorator + data + strDecorator);
+		}
+		System.out.println("Consumer ends.");
+	}
+
+}

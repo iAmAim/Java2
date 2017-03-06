@@ -1,0 +1,26 @@
+
+
+handlers= java.util.logging.FileHandler, java.util.logging.ConsoleHandler
+.level= ALL
+java.util.logging.FileHandler.pattern = java1%u.log
+java.util.logging.FileHandler.limit = 50000
+java.util.logging.FileHandler.count = 1
+java.util.logging.FileHandler.level=WARNING
+java.util.logging.FileHandler.formatter = java.util.logging.SimpleFormatter
+java.util.logging.ConsoleHandler.level=FINEST
+
+main.java.util.handlers= java.util.logging.ConsoleHandler, java.util.logging.FileHandler
+main.java.util.level = ALL
+main.java.util.useParentHandlers =false
+com.logging.level=SEVERE
+
+
+
+
+
+
+
+
+
+
+

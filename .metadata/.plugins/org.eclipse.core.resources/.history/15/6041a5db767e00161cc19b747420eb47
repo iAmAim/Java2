@@ -1,0 +1,14 @@
+log4j.rootLogger=TRACE, A1
+log4j.appender.A1=org.apache.log4j.ConsoleAppender
+log4j.appender.A1.layout=org.apache.log4j.SimpleLayout
+
+
+
+log4j.logger.com.logging.slf4j=ERROR     
+
+log4j.logger.com.logging.slf4j.Driver=DEBUG     
+
+log4j.logger.com.logging.log4j=ALL
+
+
+

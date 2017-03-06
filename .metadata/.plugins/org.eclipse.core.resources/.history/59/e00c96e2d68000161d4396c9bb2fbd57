@@ -1,0 +1,39 @@
+package withexecutors;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+
+public class ClientDriver {
+
+	public static void main(String[] args) {
+		//Create 20 connections that sends a Client Objects to the server
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("\tClient: Connecting..");
+
+			try (Socket server = new Socket("127.0.0.1", 8080)) {
+				System.out.println("\tClient: Connected");
+				Client client = new Client(i);
+				sendClientObjectToServer(server, client);
+				receiveResultFromServer(server);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	private static void receiveResultFromServer(Socket server) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(server.getInputStream()));
+		System.out.println(reader.readLine());
+	}
+
+	public static void sendClientObjectToServer(Socket server, Client client) throws IOException {
+		ObjectOutputStream outputStream = new ObjectOutputStream(server.getOutputStream());
+		
+		System.out.println("\tClient: I will send: " + client + " to the server");
+		outputStream.writeObject(client);
+	}
+}

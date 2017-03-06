@@ -1,0 +1,20 @@
+package com.basic;
+
+import java.util.Scanner;
+
+public class Driver {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter delay in seconds: ");
+			int delay = scanner.nextInt();
+			Thread t1 = new Thread(new Numbers(delay));
+			t1.start();
+		
+			scanner.close();
+	}
+
+}

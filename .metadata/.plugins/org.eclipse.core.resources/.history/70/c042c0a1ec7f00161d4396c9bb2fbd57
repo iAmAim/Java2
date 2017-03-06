@@ -1,0 +1,22 @@
+package com.producerconsumer;
+
+public class Consumer implements Runnable{
+
+	private Buffer buffer;
+	
+	public Consumer(Buffer buffer) {
+		this.buffer = buffer;
+	}
+
+	@Override
+	public void run() {
+		
+		String data = null;
+		while(!("end".equals(data))){
+			data = buffer.getMessage();
+			System.out.println("Read: "+ data);
+		}
+		
+	}
+
+}

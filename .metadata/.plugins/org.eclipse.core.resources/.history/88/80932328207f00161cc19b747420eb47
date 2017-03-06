@@ -1,0 +1,64 @@
+package com.accounts;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+public class Driver {
+	
+	static Account account1 = new Account(1, "Hesus", 999999.99);
+	static Account account2 =new Account(2, "Kelly", 143.44);
+	static Account account3 = new Account(3, "Ephraim", 214.99);
+	
+	public static void main(String[] args) {
+		List<Account> accounts = new ArrayList<>();
+		accounts.add(account3);
+		accounts.add(account2);
+		accounts.add(account1);
+	
+		
+	
+		System.out.println("Before Sorting");
+		for (Account account : accounts) {
+			System.out.println(account);
+		}
+
+		// Sort
+		Collections.sort(accounts, new Comparator<Account>() {
+			@Override
+			public int compare(Account account1, Account account2) {
+				return account1.getId() - account2.getId();
+			}
+		});
+
+		System.out.println("\n\nAfter Sorting");
+		for (Account account : accounts) {
+			System.out.println(account);
+		}
+		
+		 usingHashSet();
+
+	}
+	
+	public static void usingHashSet(){
+		System.out.println("\n\nUsing HashSet");
+		Set<Account> accountSet = new HashSet<>();
+		accountSet.add(account1);
+		accountSet.add(account2);
+		accountSet.add(account3);
+		
+		Iterator<Account> it = accountSet.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+	}
+	
+	public static void usingSortedSet(){
+		System.out.println("\n\nUsing HashSet");
+		Set<Account> accountSet = new TreeSet<>();
+	}
+}

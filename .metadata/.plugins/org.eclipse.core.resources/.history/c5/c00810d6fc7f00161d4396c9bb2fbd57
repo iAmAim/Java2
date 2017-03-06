@@ -1,0 +1,22 @@
+package com.producerconsumer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		
+		System.out.println("Demo Producer Consumer");
+		Buffer buffer = new Buffer();
+		List<Integer> taskQueue = new ArrayList<Integer>();
+		Thread producerThread =new Thread( new Producer(buffer));
+		Thread consumerThread1 =new Thread( new Consumer(buffer, "#"));
+		Thread consumerThread2 =new Thread( new Consumer(buffer, "!!!"));
+		producerThread.start();
+		consumerThread1.start();
+		consumerThread2.start();
+	}
+
+}

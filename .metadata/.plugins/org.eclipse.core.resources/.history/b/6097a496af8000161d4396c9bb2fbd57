@@ -1,0 +1,21 @@
+package concurrency;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class CharacterCount {
+
+	
+	public static void main(String[] args) throws IOException{
+		ExecutorService executor = Executors.newFixedThreadPool(4);
+		BufferedReader reader = new BufferedReader(new FileReader(args[0]));
+		String s;
+		while( (s=reader.readLine()) != null){
+			System.out.println(s);
+		}
+	}
+}

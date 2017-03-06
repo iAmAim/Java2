@@ -1,0 +1,21 @@
+1474466791311	Rename local variable 'client'
+1474467258319	Delete element
+1474467268153	Rename type 'Main'
+1474467715065	Rename local variable 'server'
+1474546537044	Copy package
+1474546541981	Delete elements
+1474547230517	Delete elements
+1474548244308	Rename local variable 'student'
+1474548637266	Extract method 'receiveResultFromServer'
+1474555390237	Copy compilation units
+1474555452763	Copy compilation unit
+1474555692911	Rename type 'DateClient'
+1474555716940	Rename type 'DataClient'
+1474555729157	Rename type 'DateServer'
+1474556180905	Rename local variable 'inStream'
+1474559168642	Move compilation unit
+1474559178239	Rename local variable 'client'
+1474560056951	Rename method 'sendClientObjectToServer'
+1474560220598	Rename method 'receiveResultFromServer'
+1474560226912	Rename method 'sendComputableObjectToServer'
+1474560271788	Rename local variable 'client'

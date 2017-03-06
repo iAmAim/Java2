@@ -1,0 +1,11 @@
+package com.logging;
+
+import org.apache.log4j.*;
+
+public class Driver {
+
+	public static void main(String[] args) {
+
+	}
+
+}

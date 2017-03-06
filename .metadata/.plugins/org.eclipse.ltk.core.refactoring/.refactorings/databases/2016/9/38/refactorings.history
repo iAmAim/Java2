@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;com.db.Main.printDbContents(...)&apos; to &apos;readtDbContents&apos;&#x0D;&#x0A;- Original project: &apos;databases&apos;&#x0D;&#x0A;- Original element: &apos;com.db.Main.printDbContents(...)&apos;&#x0D;&#x0A;- Renamed element: &apos;com.db.Main.readtDbContents(...)&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;printDbContents&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;com.db{Main.java[Main~printDbContents~QStatement;" name="readtDbContents" references="true" stamp="1474554287731" version="1.0"/>
+</session>
