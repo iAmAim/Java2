@@ -35,4 +35,9 @@
 <fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
 <fullyQualifiedTypeName name="client.Computable"/>
 <fullyQualifiedTypeName name="java.util.TreeSet"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="testing.Mockitoing"/>
+<fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+<fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+<fullyQualifiedTypeName name="testing.SpeakingClock"/>
 </qualifiedTypeNameHistroy>

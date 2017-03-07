@@ -1,0 +1,14 @@
+package designpatterns;
+
+import java.util.Observable;
+
+public class CompositeRobot implements Robot{
+
+	
+	private List<Robot> robotList = new ArrayList<>();
+	@Override
+	public void move(int x, int y) {
+		
+	}
+
+}

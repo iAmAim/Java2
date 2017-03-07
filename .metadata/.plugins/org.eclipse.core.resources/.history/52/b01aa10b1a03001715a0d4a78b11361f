@@ -1,0 +1,10 @@
+package designpatterns;
+
+public class SimpleRobot {
+
+	
+	void move(int x, int y) {
+		
+		
+	}
+}

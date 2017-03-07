@@ -1,0 +1,7 @@
+package designpatterns;
+
+import java.util.Observable;
+
+public class CompositeRobot extends Observable{
+
+}

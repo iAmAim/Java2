@@ -1,7 +1,0 @@
-package com.list;
-
-public class MyArrayList<Object> {
-	
-	public static final int MAX_ITEMS = 10;
-
-}

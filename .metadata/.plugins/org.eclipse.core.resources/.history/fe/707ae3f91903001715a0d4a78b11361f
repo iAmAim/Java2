@@ -1,0 +1,7 @@
+package designpatterns;
+
+public class Robot {
+
+	
+	void move(int x, int y);
+}

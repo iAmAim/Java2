@@ -1,0 +1,13 @@
+package designpatterns;
+
+public class Driver {
+
+	public static void main(String[] args) {
+
+		SimpleRobot robot = new SimpleRobot("clockwerk");
+		robot.register(new RobotObserver());
+		robot.move(12, 24);
+		robot.move(12, 26);
+	}
+
+}

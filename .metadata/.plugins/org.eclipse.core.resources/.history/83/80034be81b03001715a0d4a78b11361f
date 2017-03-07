@@ -1,0 +1,33 @@
+package designpatterns;
+
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class SimpleRobot extends Observable implements Robot {
+
+	private String name;
+	private List<Observer> obs;
+
+	public SimpleRobot(String name) {
+		this.name = name;
+	}
+
+	public void move(int x, int y) {
+
+		System.out.println("Robot " + this.name + " is moving x=" + x + " y=" + y);
+
+	}
+	
+	public void register(Observer o){
+		obs.add(o);
+	}
+	
+	protected void notifyObs(){
+		for(Observer ob : obs){
+			ob.update(this, null);
+		}
+	}
+	
+
+}
