@@ -23,7 +23,7 @@ public class Driver {
 		c.move(1, 2);
 		
 		System.out.println("\n\nCreating Robot with proxy");
-		Robot x = RobotFactory.createRobot("ekis");
+		Robot x = RobotFactory.createRobot("Ekis");
 		x.move(1,2);
 	}
 

@@ -3,6 +3,8 @@ package profile;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import profile.Profile.Units;
+
 public class Profiler implements InvocationHandler {
 	private Object target;
 
@@ -19,10 +21,12 @@ public class Profiler implements InvocationHandler {
 		Profile profile = (Profile)target.getClass().getAnnotation(Profile.class);	
 		System.out.println("Profile timeunit is: " +  profile.timeUnits());
 		
+		Units currentUnit = profile.timeUnits();
 		double time = profile.timeUnits().equals(Profile.Units.SECONDS) ? (end-start)/1000000000.0 : (end-start)/1000000.0;
-		System.out.format("Method %s took %f seconds/ms to run %n%n", method.getName(), time );
+		System.out.format("Method %s took %f " + currentUnit + " to run %n%n", method.getName(), time );
 		
 		return result;
 	}
+	
 
 }
