@@ -3,6 +3,9 @@ package designpatterns;
 import java.util.Observable;
 import java.util.Observer;
 
+import profile.Profile;
+
+@Profile
 public class RobotObserver implements Observer {
 
 	private String name;

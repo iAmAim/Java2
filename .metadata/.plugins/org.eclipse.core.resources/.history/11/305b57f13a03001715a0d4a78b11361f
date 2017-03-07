@@ -1,0 +1,7 @@
+ package profile;
+
+import java.lang.reflect.InvocationHandler;
+
+public class Profiler  implements InvocationHandler{
+
+}

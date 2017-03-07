@@ -1,0 +1,21 @@
+package designpatterns;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Proxy;
+
+import profile.Profile;
+import profile.Profiler;
+
+public class RobotFactory {
+
+	public static SimpleRobot createRobot(String name) {
+		Robot robot = new SimpleRobot(name);
+		// TODO: check for @Profile annotation
+		if(robot.getClass().isAnnotationPresent((Class<? extends Annotation>) Profile.class)){
+			
+			Profiler profiler  = new Profiler(robot);
+			robot = Proxy.newProxyInstance(profiler.getClass().getClassLoader(), new Class[]{SimpleRobot.class}, profiler);
+		}
+		return robot;
+	}
+}

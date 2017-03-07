@@ -1,0 +1,40 @@
+package profile;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+public class Profiler implements InvocationHandler {
+	private Object target;
+
+	public Profiler(Object target) {
+		this.target = target;
+	}
+
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		long start = System.nanoTime();
+		Object result = method.invoke(target, args);
+		long end =System.nanoTime();
+		
+		Annotation annotation = target.getClass().getAnnotation(Profile.class);
+		Profile profile = (Profile)annotation;
+		
+		
+		System.out.println("Profile timeunit is: " +  profile.timeUnits());
+		System.out.println(" is seconds " + profile.timeUnits().equals(Profile.Units.SECONDS));
+		
+		double time;
+		double secDivisor = 1000000000.0;
+		if(profile.timeUnits().equals(Profile.Units.SECONDS)){
+			time = (end-start)/secDivisor;
+		}
+		else{
+			time = end-start;
+		}
+		System.out.format("Method %s took %f seconds/ms to run %n%n", method.getName(), time );
+		
+		return result;
+	}
+
+}

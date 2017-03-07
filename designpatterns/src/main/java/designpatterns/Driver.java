@@ -16,10 +16,15 @@ public class Driver {
 		clockwerk.move(12, 26);
 		techies.move(5, 8);
 		
+		System.out.println("\n\nComposite robot added");
 		CompositeRobot c = new CompositeRobot();
 		c.addRobot(techies);
 		c.addRobot(clockwerk);
 		c.move(1, 2);
+		
+		System.out.println("\n\nCreating Robot with proxy");
+		Robot x = RobotFactory.createRobot("ekis");
+		x.move(1,2);
 	}
 
 }

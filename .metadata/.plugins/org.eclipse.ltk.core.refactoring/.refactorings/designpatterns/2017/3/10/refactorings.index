@@ -2,3 +2,8 @@
 1488881979538	Rename local variable 'robot'
 1488882523074	Rename local variable 'observerWard'
 1488882530874	Rename local variable 'direObs'
+1488893539652	Move compilation unit
+1488893691935	Rename type 'Profiler'
+1488893709393	Delete element
+1488894285979	Delete element
+1488895980346	Rename type 'Priority'

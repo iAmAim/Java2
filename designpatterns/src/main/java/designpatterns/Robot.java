@@ -1,6 +1,7 @@
 package designpatterns;
 
-public interface Robot {
+
+public interface Robot 	 {
 	
 	void move(int x, int y);
 

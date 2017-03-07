@@ -1,0 +1,5 @@
+package designpatterns;
+import java.lang.annotation.*;
+public @interface Profiler {
+
+}

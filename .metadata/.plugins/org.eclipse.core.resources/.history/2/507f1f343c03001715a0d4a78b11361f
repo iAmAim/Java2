@@ -1,0 +1,11 @@
+package designpatterns;
+
+
+public class RobotFactory {
+
+	public static Robot createRobot(String name) {
+		Robot robot = new SimpleRobot(name);
+
+		return robot;
+	}
+}

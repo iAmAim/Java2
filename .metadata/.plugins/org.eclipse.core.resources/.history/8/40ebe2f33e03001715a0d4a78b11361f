@@ -1,0 +1,10 @@
+package designpatterns;
+
+import profile.Profile;
+
+
+public interface Robot 	 {
+	
+	void move(int x, int y);
+
+}

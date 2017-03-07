@@ -1,0 +1,15 @@
+package designpatterns;
+
+
+public class RobotFactory {
+
+	public static Robot createRobot(String name) {
+		Robot robot = new SimpleRobot(name);
+		// TODO: check for @Profile annotation
+		if(robot.getClass().isAnnotationPresent(Profile.class)){
+			
+			
+		}
+		return robot;
+	}
+}

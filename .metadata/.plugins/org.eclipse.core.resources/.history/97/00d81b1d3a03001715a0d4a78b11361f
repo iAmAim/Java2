@@ -1,0 +1,7 @@
+package designpatterns;
+
+public interface Robot extends Observable {
+	
+	void move(int x, int y);
+
+}
