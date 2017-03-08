@@ -1,0 +1,14 @@
+1488982349769	Rename resource 'server.policy'
+1488982367911	Copy file
+1488983743054	Copy compilation unit
+1488983848574	Copy compilation unit
+1488984120461	Rename type 'DateTimeClient'
+1488984129552	Rename type 'DateTimeServer'
+1488984176053	Rename type 'DateTimeServerDriver'
+1488984181767	Rename type 'DateTimeServerImpl'
+1488984242155	Rename field 'dateTimeServer'
+1488987156397	Rename local variable 'currentMessage'
+1488987165490	Rename local variable 'client'
+1488987391332	Copy compilation unit
+1488987711019	Copy compilation unit
+1488987756340	Copy compilation unit

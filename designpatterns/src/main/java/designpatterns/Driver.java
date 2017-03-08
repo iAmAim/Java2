@@ -22,7 +22,7 @@ public class Driver {
 		c.addRobot(clockwerk);
 		c.move(1, 2);
 		
-		System.out.println("\n\nCreating Robot with proxy");
+		System.out.println("\n\nCreating Robot with profile proxy");
 		Robot x = RobotFactory.createRobot("Ekis");
 		x.move(1,2);
 	}

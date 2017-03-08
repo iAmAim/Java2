@@ -1,0 +1,16 @@
+package server;
+
+import java.rmi.server.UnicastRemoteObject;
+
+public class DateTimeServerDriver {
+
+	
+	public static DateTimeServerImpl dateTimeServer = new DateTimeServerImpl();
+	public static void main(String[] args) {
+
+		DateTimeServer stub = (DateTimeServer) UnicastRemoteObject.exportObject(dateTimeServer, 0);
+			
+		
+	}
+
+}

@@ -1,0 +1,13 @@
+package chatclient;
+
+import java.rmi.RemoteException;
+
+import interfaces.DateTimeClient;
+
+public class DateTimeClientImpl implements DateTimeClient {
+
+	public void update(String dateTime) throws RemoteException {
+		System.out.println("Server sends: " + dateTime);
+	}
+
+}

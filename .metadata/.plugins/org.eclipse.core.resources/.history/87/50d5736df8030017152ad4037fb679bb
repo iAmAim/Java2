@@ -1,0 +1,28 @@
+package server;
+
+
+import java.rmi.RemoteException;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+public class DateTimeServerImpl implements DateTimeServer {
+
+	private Set<DateTimeClient> clients = new CopyOnWriteArraySet<>();
+	
+	public void register(DateTimeClient client) throws RemoteException {
+
+		clients.add(client);
+	}
+	
+	public void updateClients() {
+		Date now = new Date();
+		for(DateTimeClient client: clients) {
+			try {
+				client.update(now.toString());
+			}catch(RemoteException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+}

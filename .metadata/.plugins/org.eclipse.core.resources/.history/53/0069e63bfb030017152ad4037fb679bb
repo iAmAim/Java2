@@ -1,0 +1,12 @@
+package client;
+
+public class DateTimeClientDriver {
+
+	public static void main(String[] args) {
+
+		DateTimeClient client = new DateTimeClientImpl();
+		//create stub  (the remote object)
+		
+	}
+
+}

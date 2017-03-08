@@ -1,0 +1,13 @@
+package chatclient;
+
+import java.rmi.RemoteException;
+
+import interfaces.ChatClient;
+
+public class ChatClientImpl implements ChatClient {
+
+	public void update(String broadcastMessage) throws RemoteException {
+		System.out.println("Message to all: " + broadcastMessage);
+	}
+
+}

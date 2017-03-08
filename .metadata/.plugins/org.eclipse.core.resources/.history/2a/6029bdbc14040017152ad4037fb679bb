@@ -1,0 +1,53 @@
+package interfaces;
+
+import java.rmi.RemoteException;
+import java.util.Date;
+import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.DelayQueue;
+
+public class ChatServerImpl implements ChatServer {
+
+	private Set<ChatClient> clients = new CopyOnWriteArraySet<>();
+	private ConcurrentLinkedQueue<ChatClient> messageQueue = new ConcurrentLinkedQueue<>();
+
+	public void register(ChatClient client) throws RemoteException {
+
+		clients.add(client);
+	}
+
+	public String sayHello(ChatClient client) {
+
+		return "Hello from server";
+	}
+
+	// Runs every second
+	public void updateClients(){
+		Date now = new Date();
+		ChatClient currentClient = messageQueue.poll();
+		String msg="";
+	
+		for (ChatClient client : clients) {
+			try {
+				if(currentClient != null ) {
+					msg = currentClient.getName() + ": " + currentClient.getMessage();
+					client.update(msg);
+				}
+					
+				
+			} catch (RemoteException ex) {
+				clients.remove(client);
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void receiveMessage(ChatClient client) throws RemoteException {
+		messageQueue.add(client);	
+		
+	}
+
+
+}

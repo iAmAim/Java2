@@ -1,0 +1,17 @@
+package client;
+
+import java.rmi.registry.LocateRegistry;
+
+public class DateTimeClientDriver {
+
+	public static void main(String[] args) {
+
+		DateTimeClient client = new DateTimeClientImpl();
+		//look up object from the regeistry
+		DateTimeServer server = (DateTimeServer)LocateRegistry.getRegistry().lookup("dateTimeServer");
+		
+		//create stub  (the remote object)
+		
+	}
+
+}

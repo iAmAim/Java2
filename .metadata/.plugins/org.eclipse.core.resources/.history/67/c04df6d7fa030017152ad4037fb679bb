@@ -1,0 +1,12 @@
+package client;
+
+import java.rmi.RemoteException;
+
+public class DateTimeClientImpl implements DateTimeClient{
+
+	public void update(String dateTime) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
