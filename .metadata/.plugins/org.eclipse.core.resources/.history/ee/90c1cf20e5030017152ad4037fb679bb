@@ -1,0 +1,11 @@
+package server;
+
+public class CurrencyConverterService implements Converter {
+
+	private final static double POUNDS_TO_EURO = 1.25;
+	public double convertPoundsToEuro(double pounds) throws Exception {
+
+		return pounds * POUNDS_TO_EURO;
+	}
+
+}

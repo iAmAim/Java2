@@ -1,0 +1,16 @@
+package server;
+
+import java.rmi.server.UnicastRemoteObject;
+
+public class ServerDriver {
+
+	public static void main(String[] args){
+		
+		Converter converter = new CurrencyConverterService();
+		
+		try{
+			Converter strub = (Converter)UnicastRemoteObject.exportObject(converter,0);
+		}
+	}
+	
+}

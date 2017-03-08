@@ -1,0 +1,24 @@
+I'm too lazy now to do this: http://www.ejbtutorial.com/java-rmi/a-step-by-step-implementation-tutorial-for-java-rmi
+
+
+Below is the original instruction for the course:
+
+
+1.  Put the following at the start of your main method in both server and client
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
+
+		
+2. Place the provided policy files in the roots of the appropriate projects (client and server)
+
+3. When you run the server, use the following JVM arguments...
+	-Djava.security.manager -Djava.security.policy=server.policy  -Djava.rmi.server.useCodebaseOnly=false
+	
+4. When you run the client, use the following JVM arguments...
+	-Djava.security.manager -Djava.security.policy=client.policy -Djava.rmi.server.codebase=http://localhost:8080/ComputeClient.jar
+	
+	... substituting the name of your jar file which contains the task classes the server needs
+
+5. BEFORE running your code, copy your jar file into [tomcat]/webapps/ROOT, and then start up Tomcat from its bin folder
+   by running startup.bat

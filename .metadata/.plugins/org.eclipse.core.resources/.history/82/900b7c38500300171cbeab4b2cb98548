@@ -1,0 +1,10 @@
+package server;
+
+import java.rmi.Remote;
+
+public interface Converter extends Remote {
+
+public double convertPoundsToEuro(double pounds){
+	
+}
+}

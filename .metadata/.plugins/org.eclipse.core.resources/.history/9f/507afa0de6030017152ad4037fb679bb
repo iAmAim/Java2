@@ -1,0 +1,43 @@
+package client;
+
+import java.io.Serializable;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import compute.Task;
+import server.CurrencyConverter;
+
+public class CurrencyClient {
+
+	public static void main(String[] args) {
+		Registry registry;
+		try {
+			registry = LocateRegistry.getRegistry();
+			CurrencyConverter converterService = (CurrencyConverter) registry.lookup("converter");
+			
+			Currency c = new Currency();
+			double amountInEuros = converterService.executeTask(c);
+			System.out.format("100 pounds in euro is %.2f", amountInEuros);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+
+ class Currency implements Task<Double>, Serializable {
+
+    private static final long serialVersionUID = 227L;
+
+	public Double execute() {
+		// TODO Auto-generated method stub
+		return 0.00;
+	}
+    
+}

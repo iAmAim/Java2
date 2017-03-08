@@ -1,0 +1,28 @@
+package client;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import server.Converter;
+
+public class CurrencyClient {
+
+	public static void main(String[] args) {
+		Registry registry;
+		try {
+			registry = LocateRegistry.getRegistry();
+			Converter converterService = (Converter) registry.lookup("converter");
+			double amountInEuros = converterService.convertPoundsToEuro(100.0);
+			System.out.format("100 pounds in euro is %.2f", amountInEuros);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

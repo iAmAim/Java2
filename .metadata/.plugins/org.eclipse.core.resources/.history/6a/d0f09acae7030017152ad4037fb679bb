@@ -1,0 +1,14 @@
+package server;
+
+import java.rmi.RemoteException;
+
+import compute.Task;
+
+public class CurrencyConverterService implements Compute {
+
+
+	public <T> T executeTask(Task<T> t) throws RemoteException {
+		return t.execute();
+	}
+
+}

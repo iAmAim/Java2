@@ -1,0 +1,13 @@
+package server;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class CurrencyClient {
+
+	public static void main(String[] args) {
+		Registry registry = LocateRegistry.getRegistry();
+		Converter converterService =  (Converter) registry.lookup("converter");
+	}
+
+}

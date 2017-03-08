@@ -4,11 +4,15 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="rmi_service"/>
+			<item value="designpatterns"/>
 			<item value="Hadouken"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="rmi_service"/>
+			<item value="designpatterns"/>
 			<item value="hadouken"/>
 		</list>
 		<list key="projectNameTemplate">

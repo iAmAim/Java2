@@ -1,0 +1,29 @@
+package server;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class CurrencyClient {
+
+	public static void main(String[] args) {
+		Registry registry;
+		try {
+			registry = LocateRegistry.getRegistry();
+			Converter converterService =  (Converter) registry.lookup("converter");
+			double amountInEuros = converterService.convertPoundsToEuro(100.0);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

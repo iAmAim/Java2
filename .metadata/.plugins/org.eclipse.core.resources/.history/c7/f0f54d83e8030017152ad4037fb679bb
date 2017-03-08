@@ -1,0 +1,18 @@
+package server;
+
+import java.rmi.RemoteException;
+
+import compute.Task;
+
+public class CurrencyConverterService implements Compute {
+
+	private final static double POUNDS_TO_EURO = 1.25;
+	public double convertPoundsToEuro(double pounds) throws Exception {
+
+		return pounds * POUNDS_TO_EURO;
+	}
+	public <T> T executeTask(Task<T> t) throws RemoteException {
+		return t.execute();
+	}
+
+}

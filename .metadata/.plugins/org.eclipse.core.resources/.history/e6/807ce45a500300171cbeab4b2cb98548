@@ -1,0 +1,10 @@
+package server;
+
+public class CurrencyConverterService implements Converter {
+
+	public double convertPoundsToEuro(double pounds) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

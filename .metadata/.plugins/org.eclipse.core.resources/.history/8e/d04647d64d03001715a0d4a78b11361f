@@ -1,0 +1,22 @@
+package designpatterns;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CompositeRobot implements Robot{
+
+	
+	private List<Robot> robotList = new ArrayList<>();
+	@Override
+	public void move(int x, int y) {
+		for(Robot r : robotList){
+			r.move(x, y);
+		}
+	}
+	@Override
+	public void addObserver(RobotObserver direWard) {
+		this.robotList.add(r);
+		
+	}
+
+}
