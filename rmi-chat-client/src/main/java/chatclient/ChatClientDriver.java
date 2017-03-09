@@ -7,10 +7,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
+import factory.ClientFactory;
 import interfaces.ChatClient;
 import interfaces.ChatServer;
 
 public class ChatClientDriver {
+
+	private static Scanner scanner = new Scanner(System.in);;
 
 	public static void main(String[] args) {
 
@@ -22,23 +25,19 @@ public class ChatClientDriver {
 
 			while (true) {
 
-				ChatClient client = new ChatClientImpl();
+				// TODO: Validate the username if it is valid or duplicate
+				System.out.println("Enter your username: ");
+				String username = getInput();
+				// client.setName(username);
+
+				ChatClient client = ClientFactory.createClient(username);
 				// create Stub (remote)object
 				ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
 
 				// look up server object from the registry
 				ChatServer server = (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
 
-				
-				// TODO: Validate the username if it is valid or duplicate
-				System.out.println("Enter your username: ");
-				String username = getInput();
-				client.setName(username);
-				
-				
-				
-				
-				//WElcome the user to the chat room!
+				// WElcome the user to the chat room!
 				String helloFromServer = server.sayHello(stub);
 
 				System.out.println("Server says: " + helloFromServer);
@@ -47,8 +46,8 @@ public class ChatClientDriver {
 				while (true) {
 					System.out.println(">");
 					String message = getInput();
-					client.setMessage(message);
-					server.receiveMessage(client);
+					String [] messageArr = {client.getName(), message};
+					server.receiveMessage(messageArr);
 				}
 			}
 
@@ -68,11 +67,15 @@ public class ChatClientDriver {
 
 	}
 
+	// TODO: use try with resources
 	static String getInput() {
-		try(Scanner scanner = new Scanner(System.in)){		
-			String input = scanner.nextLine();
-			return input;
-		}
+
+		String input;
+		do {
+			input = scanner.nextLine();
+		} while (input.isEmpty());
+
+		return input;
 	}
 
 }

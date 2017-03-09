@@ -1,0 +1,14 @@
+package factory;
+
+import chatclient.ChatClientImpl;
+import interfaces.ChatClient;
+
+public class ClientFactory {
+
+	
+	public ChatClient createClient() {
+		
+		return new ChatClientImpl();
+			
+	}
+}

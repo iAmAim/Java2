@@ -10,7 +10,7 @@ import java.util.concurrent.DelayQueue;
 public class ChatServerImpl implements ChatServer {
 
 	private Set<ChatClient> clients = new CopyOnWriteArraySet<>();
-	private ConcurrentLinkedQueue<ChatClient> messageQueue = new ConcurrentLinkedQueue<>();
+	private static ConcurrentLinkedQueue<String[]> messageQueue = new ConcurrentLinkedQueue<>();
 
 	public void register(ChatClient client) throws RemoteException {
 
@@ -23,19 +23,16 @@ public class ChatServerImpl implements ChatServer {
 	}
 
 	// Runs every second
-	public void updateClients() {
+	public synchronized void updateClients() {
 		Date now = new Date();
-		ChatClient currentClient = messageQueue.poll();
+		String[] currentMessage = messageQueue.poll();
 		String msg = "";
-		if (currentClient != null) {
-			String name = "";
+		String name = "";
+
+		if (currentMessage != null) {
 			// Build the text e.g. name + message + date etc.
-			try {
-				name = currentClient.getName();
-				msg = name + "(" + now + "): " + currentClient.getMessage();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
+			name = currentMessage[0];
+			msg = name + "(" + now + "): " + currentMessage[1];
 
 			// Update all clients
 			for (ChatClient client : clients) {
@@ -50,10 +47,7 @@ public class ChatServerImpl implements ChatServer {
 
 	}
 
-	@Override
-	public void receiveMessage(ChatClient client) throws RemoteException {
-		messageQueue.add(client);
-
+	public void receiveMessage(String[] messageArr) throws RemoteException {
+		messageQueue.add(messageArr);
 	}
-
 }
