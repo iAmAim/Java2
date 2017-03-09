@@ -1,0 +1,53 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatClientDriver {
+
+	private static Scanner scanner = new Scanner(System.in);
+	private static ChatServiceManager service = new ChatServiceManager();
+
+	public static void main(String[] args) {
+
+		try {
+			// TODO: Validate the username if it is valid or duplicate
+			System.out.println("Enter your username: ");
+			String username = getUserInput();
+			service.registerUser(username);
+		
+			while (true) {
+				System.out.println(">");
+				String message = getUserInput();
+				String[] messageArr = { username, message };
+				service.getServer().receiveMessage(messageArr);
+			}
+
+		} catch (AccessException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// TODO: use try with resources
+	static String getUserInput() {
+		String input;
+		do {
+			input = scanner.nextLine();
+		} while (input.isEmpty());
+
+		return input;
+	}
+}

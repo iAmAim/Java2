@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="Running Platform" sequenceNumber="4">
+<locations>
+<location path="${eclipse_home}" type="Profile"/>
+</locations>
+<environment>
+<os>win32</os>
+<ws>win32</ws>
+<arch>x86</arch>
+<nl>en_IE</nl>
+</environment>
+<launcherArgs>
+<vmArgs>-Xms512m -Xmx768m -Dosgi.requiredJavaVersion=1.6 -Declipse.p2.unsignedPolicy=allow -Doomph.redirection.index=index:/org.eclipse.setup-&gt;https://arm.mo.ca.am.ericsson.se/artifactory/simple/proj-eecs-dev-local/projectConfiguration/oomph/index.setup -Doomph.internal.p2repo.server=http://eecs.rnd.ki.sw.ericsson.se/ -Doomph.update.url=http://eecs.rnd.ki.sw.ericsson.se/updates/p2Repo/mars -Doomph.redirection.index.redirection=index:/-&gt;https://arm.mo.ca.am.ericsson.se/artifactory/simple/proj-eecs-dev-local/projectConfiguration/oomph/</vmArgs>
+</launcherArgs>
+</target>

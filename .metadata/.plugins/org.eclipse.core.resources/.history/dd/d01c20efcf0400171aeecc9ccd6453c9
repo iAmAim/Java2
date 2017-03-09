@@ -1,0 +1,27 @@
+package chatclient;
+
+import java.rmi.RemoteException;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import interfaces.ChatServer;
+
+public class ChatClientManagerTest {
+	ChatServiceManager sut;
+	ChatServer serverMock = Mockito.mock(ChatServer.class);
+	
+	@Before
+	public void setUp() {
+		 sut = new ChatServiceManager();
+	}
+	
+	@Test
+	public void isExistingUserTest() throws RemoteException {
+
+	//String message=	sut.getWelcomeMessage();
+	//assertFalse(message.equals("ASDF"));
+	}
+
+}

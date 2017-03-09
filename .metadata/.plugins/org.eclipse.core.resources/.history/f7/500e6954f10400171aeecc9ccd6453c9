@@ -1,0 +1,78 @@
+package javafxgui;
+
+import java.net.URL;
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ResourceBundle;
+
+import chatclient.ChatServiceManager;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+public class TextAreaController {
+	@FXML
+	// The reference of inputText will be injected by the FXML loader
+	private TextField inputText;
+
+	// The reference of outputText will be injected by the FXML loader
+	@FXML
+	private static TextArea outputText;
+
+	// location and resources will be automatically injected by the FXML loader
+	@FXML
+	private URL location;
+
+	@FXML
+	private ResourceBundle resources;
+
+	// Add a public no-args constructor
+	public TextAreaController() {
+	}
+
+	ChatServiceManager service;
+
+	@FXML
+	private void initialize() throws AccessException, RemoteException, NotBoundException {
+		service = new ChatServiceManager();
+
+	}
+
+	String username;
+	@FXML
+	private void printOutput() throws AccessException, RemoteException, NotBoundException {
+		String serverMessage;
+			username = inputText.getText();
+			serverMessage = service.registerUser(username);
+			outputText.setText(serverMessage);
+	}
+	
+	@FXML
+	private void sendMessage() {
+		String text = inputText.getText();
+		if(text.equals("quit")) {
+			outputText.setText("Exiting mIRC client..");
+		}else {
+			service.sendMessage(new String[] {username, text});
+			outputText.appendText(text);
+		}
+	}
+
+	@FXML
+	public static void updateChatBox(final String broadcastMessage) {
+		System.out.println("updating chat boxXX!!!!!: " + broadcastMessage);
+		// outputText.setText("\n" + broadcastMessage);
+
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				outputText.appendText("\n" + broadcastMessage);
+			}
+		});
+
+	}
+}

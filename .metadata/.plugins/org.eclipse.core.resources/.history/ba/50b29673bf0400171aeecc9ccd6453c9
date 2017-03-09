@@ -1,0 +1,10 @@
+package chatclient;
+
+public class ChatClientManager {
+	
+	public void manageServerConnection() {
+		
+		
+	}
+
+}

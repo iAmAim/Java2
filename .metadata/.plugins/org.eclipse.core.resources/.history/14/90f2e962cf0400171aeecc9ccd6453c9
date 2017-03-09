@@ -1,0 +1,23 @@
+//package chatclient;
+//
+//import java.rmi.RemoteException;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//
+//public class ChatClientManagerTest {
+//	ChatServiceManager sut;
+//	
+//	@Before
+//	public void setUp() {
+//		 sut = new ChatServiceManager();
+//	}
+//	
+//	@Test
+//	public void test() throws RemoteException {
+//
+//	String message=	sut.getWelcomeMessage();
+//	//assertFalse(message.equals("ASDF"));
+//	}
+//
+//}

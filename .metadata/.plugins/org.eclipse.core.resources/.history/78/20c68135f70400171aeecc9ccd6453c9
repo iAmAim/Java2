@@ -1,0 +1,26 @@
+package chatclient;
+
+import java.rmi.RemoteException;
+import java.util.List;
+
+import interfaces.ChatClient;
+import javafxgui.ChatClientGUI;
+import javafxgui.TextAreaExampleController;
+
+public class ChatClientImpl implements ChatClient {
+	private String name;
+
+	public ChatClientImpl(String name) {
+		this.name = name;
+	}
+
+	public void update(String broadcastMessage) throws RemoteException {
+		ChatClientGUI.updateChatBox(broadcastMessage);
+	}
+
+	@Override
+	public String getName() throws RemoteException {
+		return this.name;
+	}
+
+}

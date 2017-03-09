@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" disable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxgui.ChatClientController">
+  <children>
+    <VBox fx:id="vbox" layoutX="14.0" layoutY="34.0" prefHeight="92.0" prefWidth="231.0" style="-fx-padding: 10;&#10;-fx-border-style: solid inside;&#10;-fx-border-width: 2;&#10;-fx-border-insets: 5;&#10;-fx-border-radius: 5;&#10;-fx-border-color: blue;">
+      <children>
+        <TextField fx:id="inputText" prefHeight="25.0" prefWidth="188.0" promptText="Enter..." />
+        <Button fx:id="okBtn" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printJoinChatroom" text="Join" textAlignment="CENTER" />
+      </children>
+    </VBox>
+  <TextArea fx:id="outputText" layoutX="250.0" layoutY="37.0" prefHeight="231.0" prefWidth="327.0" wrapText="true" />
+      <Button fx:id="sendBtn" layoutX="507.0" layoutY="285.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="75.0" prefWidth="68.0" text="Send" />
+  <Label fx:id="outputLbl" layoutX="250.0" layoutY="20.0" text="Messages" />
+  <Label fx:id="inputLbl" alignment="CENTER_LEFT" cache="true" cacheHint="SCALE" layoutX="21.0" layoutY="20.0" prefHeight="13.0" prefWidth="197.0" text="Join chat as:" textAlignment="LEFT" />
+      <TextArea fx:id="chatTextArea" layoutX="252.0" layoutY="285.0" prefHeight="75.0" prefWidth="244.0" />
+  </children>
+</AnchorPane>

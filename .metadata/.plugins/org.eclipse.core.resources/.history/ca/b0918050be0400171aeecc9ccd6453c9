@@ -1,0 +1,81 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatClientDriver {
+
+	private static Scanner scanner = new Scanner(System.in);;
+
+	public static void main(String[] args) {
+
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
+
+		try {
+
+			while (true) {
+
+				// TODO: Validate the username if it is valid or duplicate
+				System.out.println("Enter your username: ");
+				String username = getInput();
+				// client.setName(username);
+
+				ChatClient client = ClientFactory.createClient(username);
+				// create Stub (remote)object
+				ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
+
+				// look up server object from the registry
+				ChatServer server = (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
+
+				// WElcome the user to the chat room!
+				String helloFromServer = server.getWelcomeMessage()();
+
+				System.out.println("Server says: " + helloFromServer);
+				server.register(stub);
+
+				while (true) {
+					System.out.println(">");
+					String message = getInput();
+					String [] messageArr = {client.getName(), message};
+					server.receiveMessage(messageArr);
+				}
+			}
+
+			// register the client to the server
+			// server.register(stub);
+
+		} catch (AccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// TODO: use try with resources
+	static String getInput() {
+
+		String input;
+		do {
+			input = scanner.nextLine();
+		} while (input.isEmpty());
+
+		return input;
+	}
+
+}

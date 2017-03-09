@@ -1,0 +1,8 @@
+gui\ChatGui.class
+chatclient\ChatClientImpl.class
+gui\ChatGui$1.class
+interfaces\ChatServer.class
+factory\ClientFactory.class
+chatclient\ChatClientDriver.class
+interfaces\ChatClient.class
+chatclient\ChatServiceManager.class

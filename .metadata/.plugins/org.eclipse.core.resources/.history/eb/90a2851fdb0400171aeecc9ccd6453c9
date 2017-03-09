@@ -1,0 +1,51 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.*;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+
+import org.junit.runner.RunWith;
+import org.powermock.api.easymock.PowerMock;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.testng.IObjectFactory;
+import org.testng.annotations.ObjectFactory;
+import org.testng.annotations.Test;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+@RunWith(ChatServiceManager.class)
+@PrepareForTest(ChatServiceManager.class)	
+public class ChatClientManagerTest {
+	ChatServiceManager sut ;
+	ChatServer serverMock;
+	Set<ChatClient> clients = new CopyOnWriteArraySet<>();
+	
+
+	@Before
+	public void setUp() throws AccessException, RemoteException, NotBoundException {
+		
+
+		
+	}
+
+	@Test
+	public void isExistingUserTest_Success() throws RemoteException, NotBoundException {
+		mockStatic(LocateRegistry.class);
+	}
+
+}

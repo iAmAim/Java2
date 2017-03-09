@@ -1,0 +1,45 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatClientManagerTest {
+	ChatServiceManager sut = new ChatServiceManager();
+	ChatServer serverMock = Mockito.mock(ChatServer.class);
+	Set<ChatClient> clients = new CopyOnWriteArraySet<>();
+
+	@Before
+	public void setUp() throws AccessException, RemoteException, NotBoundException {
+		//sut = new ChatServiceManager();
+		
+	}
+
+	@Test
+	public void isExistingUserTest_Success() throws RemoteException, NotBoundException {
+
+		clients.add(new ChatClientImpl("Ana"));
+		clients.add(new ChatClientImpl("Taylor"));
+		//when(sut.getServer()).thenReturn(serverMock);
+		//when(sut.server.getUsers()).thenReturn(clients);
+		
+		boolean isExisting = sut.isExistingUser("Taylor");
+		
+		verify(serverMock, times(1)).getUsers();
+		//assertTrue(isExisting);
+
+	}
+
+}

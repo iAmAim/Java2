@@ -1,75 +1,51 @@
 package chatclient;
 
 import java.rmi.AccessException;
+import org.apache.log4j.Logger;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
-import factory.ClientFactory;
-import interfaces.ChatClient;
-import interfaces.ChatServer;
 
 public class ChatClientDriver {
 
-	private static Scanner scanner = new Scanner(System.in);;
+	private static Scanner scanner = new Scanner(System.in);
+	private static ChatServiceManager service;
+	private static Logger logger = Logger.getLogger(ChatClientDriver.class);
 
-	public static void main(String[] args) {
-
-		if (System.getSecurityManager() == null) {
-			System.setSecurityManager(new SecurityManager());
-		}
-
+	public static void main(String[] args){
+		
 		try {
-
-			while (true) {
-
-				// TODO: Validate the username if it is valid or duplicate
+			service = new ChatServiceManager();
+			String serverMessage, username;
+			do {
+				
 				System.out.println("Enter your username: ");
-				String username = getInput();
-				// client.setName(username);
+				username = getUserInput();
+				logger.debug("User enters username: " + username);
+				serverMessage = service.registerUser(username);
+				logger.debug("Server returns: " + serverMessage);
 
-				ChatClient client = ClientFactory.createClient(username);
-				// create Stub (remote)object
-				ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
+			} while (!serverMessage.equals(service.getWelcomeMessage()));
 
-				// look up server object from the registry
-				ChatServer server = (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
-
-				// WElcome the user to the chat room!
-				String helloFromServer = server.sayHello(stub);
-
-				System.out.println("Server says: " + helloFromServer);
-				server.register(stub);
-
-				while (true) {
-					System.out.println(">");
-					String message = getInput();
-					String [] messageArr = {client.getName(), message};
-					server.receiveMessage(messageArr);
-				}
+			System.out.println(serverMessage);
+			while (true) {
+				System.out.println(">");
+				String message = getUserInput();
+				String[] messageArr = { username, message };
+				service.sendMessage(messageArr);
 			}
 
-			// register the client to the server
-			// server.register(stub);
-
 		} catch (AccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
-	// TODO: use try with resources
-	static String getInput() {
-
+	static String getUserInput() {
 		String input;
 		do {
 			input = scanner.nextLine();
@@ -77,5 +53,4 @@ public class ChatClientDriver {
 
 		return input;
 	}
-
 }

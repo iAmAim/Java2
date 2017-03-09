@@ -13,3 +13,30 @@
 1488989922055	Rename local variable 'username'
 1489056442201	Delete element
 1489056481951	Copy compilation units
+1489060035643	Copy compilation unit
+1489060258263	Copy compilation unit
+1489060484366	Rename method 'getInput'
+1489060598292	Rename type 'ChatClientManager'
+1489060627940	Rename method 'manageServerConnection'
+1489061088134	Rename type 'ChatClientConnectionManager'
+1489061141427	Rename type 'ChatConnectionManager'
+1489061169964	Rename field 'manager'
+1489061176676	Rename type 'ChatService'
+1489062007904	Copy compilation unit
+1489062396453	Rename local variable 'msg'
+1489062598296	Copy compilation unit
+1489067039642	Rename method 'isValidUser'
+1489067057897	Copy compilation unit
+1489072565561	Delete element
+1489072603912	Rename type 'ChatServiceManager'
+1489072951572	Rename local variable 'welcomeMessage'
+1489073938327	Delete elements
+1489076240151	Delete element
+1489076243273	Delete element
+1489076245448	Delete element
+1489076249421	Delete element
+1489083054384	Rename field 'chatextArea'
+1489084509255	Rename type 'TextAreaController'
+1489084546049	Rename type 'ChatClientGUI'
+1489084570805	Rename type 'TextAreaExampleController'
+1489084651685	Rename type 'ChatClientDriver'

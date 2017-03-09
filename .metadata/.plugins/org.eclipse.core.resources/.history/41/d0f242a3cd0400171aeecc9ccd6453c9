@@ -1,0 +1,14 @@
+package chatclient;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ChatClientManagerTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

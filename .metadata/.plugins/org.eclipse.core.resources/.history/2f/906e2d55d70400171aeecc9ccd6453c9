@@ -1,0 +1,57 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import org.apache.log4j.Logger;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.Scanner;
+
+
+public class ChatClientDriver {
+
+	private static Scanner scanner = new Scanner(System.in);
+	private static ChatServiceManager service;
+	private static Logger logger = Logger.getLogger(ChatClientDriver.class);
+
+	public static void main(String[] args) {
+
+		try {
+			String welcomeMessage, username;
+			service = new ChatServiceManager();
+			do {
+				
+				System.out.println("Enter your username: ");
+				username = getUserInput();
+				logger.debug("User enters username: " + username);
+				welcomeMessage = service.registerUser(username);
+				logger.debug("Server returns: " + welcomeMessage);
+
+			} while (!welcomeMessage.equals(service.getWelcomeMessage()));
+
+			System.out.println(welcomeMessage);
+			while (true) {
+				System.out.println(">");
+				String message = getUserInput();
+				String[] messageArr = { username, message };
+				service.sendMessage(messageArr);
+			}
+
+		} catch (AccessException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// TODO: use try with resources
+	static String getUserInput() {
+		String input;
+		do {
+			input = scanner.nextLine();
+		} while (input.isEmpty());
+
+		return input;
+	}
+}

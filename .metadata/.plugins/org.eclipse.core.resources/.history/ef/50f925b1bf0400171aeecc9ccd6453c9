@@ -1,0 +1,23 @@
+package chatclient;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatClientConnectionManager {
+	
+	public ChatServer getServerConnection(String username) {
+		ChatClient client = ClientFactory.createClient(username);
+		// create Stub (remote)object
+		ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
+
+		// look up server object from the registry
+		ChatServer server = (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
+		return server;
+		
+	}
+
+}

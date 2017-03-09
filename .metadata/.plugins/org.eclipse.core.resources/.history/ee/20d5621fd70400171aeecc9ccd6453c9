@@ -1,0 +1,58 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Set;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatServiceManager {
+	ChatServer server;
+
+
+	public String registerUser(String username) throws RemoteException, NotBoundException {
+		ChatClient client = ClientFactory.createClient(username);
+		// create Stub (remote)object
+		ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
+
+		server = getServer();
+		return  isExistingUser(username) ? "User already exists": server.register(stub);
+	}
+	
+	
+	public ChatServer getServer() throws AccessException, RemoteException, NotBoundException {
+		
+		return (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
+	}
+
+
+	public void sendMessage(String[] messageArr) throws RemoteException {
+		server.receiveMessage(messageArr);
+
+	}
+	
+	//TODO: move this implementation to server
+	public boolean isExistingUser(String username) throws RemoteException {
+		
+		Set<ChatClient> users=	getServer.getUsers();
+		System.out.println("BEFORE LOOP");
+		for(ChatClient user : users) {
+			System.out.println("user: " + user);
+			if(user.getName().equals(username)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+
+	public String getWelcomeMessage() throws RemoteException {
+		return server.getWelcomeMessage();
+	}
+}

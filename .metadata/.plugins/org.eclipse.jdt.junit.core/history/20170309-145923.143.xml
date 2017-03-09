@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ChatClientManagerTest" project="rmi-chat-client" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="chatclient.ChatClientManagerTest" time="0.031">
+    <testcase name="isExistingUserTest_Success" classname="chatclient.ChatClientManagerTest" time="0.031"/>
+  </testsuite>
+</testrun>

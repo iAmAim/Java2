@@ -5,49 +5,47 @@ import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.DelayQueue;
 
 public class ChatServerImpl implements ChatServer {
 
+	private static String WELCOME_MESSAGE = "Welcome to mIRC 2017 Edition!!";
 	private Set<ChatClient> clients = new CopyOnWriteArraySet<>();
 	private static ConcurrentLinkedQueue<String[]> messageQueue = new ConcurrentLinkedQueue<>();
 
-	public void register(ChatClient client) throws RemoteException {
-
+	public String register(ChatClient client) throws RemoteException {
 		clients.add(client);
-	}
-
-	public String sayHello(ChatClient client) {
-
-		return "Welcome to mIRC version 2.0!!";
+		return WELCOME_MESSAGE;
 	}
 
 	// Runs every second
-	public synchronized void updateClients() {
+	public synchronized void updateClients(String[] messageArr) {
 		Date now = new Date();
-		String[] currentMessage = messageQueue.poll();
-		String msg = "";
-		String name = "";
+		String name = messageArr[0];
+		String message = name + "(" + now + "): " + messageArr[1];
 
-		if (currentMessage != null) {
-			// Build the text e.g. name + message + date etc.
-			name = currentMessage[0];
-			msg = name + "(" + now + "): " + currentMessage[1];
-
-			// Update all clients
-			for (ChatClient client : clients) {
-				try {
-					client.update(msg);
-				} catch (RemoteException ex) {
-					clients.remove(client);
-					ex.printStackTrace();
-				}
+		// Update all clients
+		for (ChatClient client : clients) {
+			try {
+				client.update(message);
+			} catch (RemoteException ex) {
+				clients.remove(client);
+				ex.printStackTrace();
 			}
 		}
-
 	}
 
 	public void receiveMessage(String[] messageArr) throws RemoteException {
 		messageQueue.add(messageArr);
+		updateClients(messageArr);
+	}
+
+	@Override
+	public Set<ChatClient> getUsers() throws RemoteException {
+		return clients;
+	}
+
+	@Override
+	public String getWelcomeMessage() throws RemoteException {
+		return WELCOME_MESSAGE;
 	}
 }

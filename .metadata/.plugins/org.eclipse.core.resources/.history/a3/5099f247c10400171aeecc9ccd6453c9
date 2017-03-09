@@ -1,0 +1,34 @@
+package chatclient;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatServiceManager {
+	ChatServer server;
+
+	public String registerUser(String username) throws RemoteException, NotBoundException {
+		ChatClient client = ClientFactory.createClient(username);
+		// create Stub (remote)object
+		ChatClient stub = (ChatClient) UnicastRemoteObject.exportObject(client, 0);
+
+		// look up server object from the registry
+		server = (ChatServer) LocateRegistry.getRegistry().lookup("chatServer");
+		server.register(stub);
+		return server.getWelcomeMessage();
+	}
+
+	public ChatServer getServer() {
+		return server;
+	}
+
+	public void sendMessage(String[] messageArr) throws RemoteException {
+		server.receiveMessage(messageArr);
+
+	}
+}

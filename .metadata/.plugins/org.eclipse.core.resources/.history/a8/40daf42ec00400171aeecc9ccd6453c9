@@ -1,0 +1,64 @@
+package chatclient;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.Scanner;
+
+import factory.ClientFactory;
+import interfaces.ChatClient;
+import interfaces.ChatServer;
+
+public class ChatClientDriver {
+
+	private static Scanner scanner = new Scanner(System.in);
+	private static ChatClientConnectionManager manager = new ChatClientConnectionManager();
+
+	public static void main(String[] args) {
+
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
+
+		try {
+
+			// TODO: Validate the username if it is valid or duplicate
+			System.out.println("Enter your username: ");
+			String username = getUserInput();
+
+			
+			manager.registerUser(username);
+		
+
+			while (true) {
+				System.out.println(">");
+				String message = getUserInput();
+				String[] messageArr = { client.getName(), message };
+				server.receiveMessage(messageArr);
+			}
+
+		} catch (AccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	// TODO: use try with resources
+	static String getUserInput() {
+		String input;
+		do {
+			input = scanner.nextLine();
+		} while (input.isEmpty());
+
+		return input;
+	}
+}

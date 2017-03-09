@@ -2,13 +2,16 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.Map;
+import java.util.Set;
 
 public interface ChatServer extends Remote {
 
-	void register(ChatClient client) throws RemoteException;
+	String register(ChatClient client) throws RemoteException;
 
 	void receiveMessage(String[] messageArr) throws RemoteException;
 
-	String sayHello(ChatClient client) throws RemoteException;
+	Set<ChatClient> getUsers() throws RemoteException;
+
+	String getWelcomeMessage() throws RemoteException;
+
 }

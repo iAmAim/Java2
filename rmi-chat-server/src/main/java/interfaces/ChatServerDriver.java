@@ -17,30 +17,15 @@ public class ChatServerDriver {
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.bind("chatServer", stub);
 			System.out.println("Chat server ready.....");
-			processClients();
+			//processClients();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (AlreadyBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
 		
-			
-		
-	}
-	private static void processClients() {
-		
-		while(true) {
-			//TODO: implement observer pattern here
-			chatServer.updateClients();
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-		}
 	}
 
 }

@@ -4,17 +4,18 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import interfaces.ChatClient;
+import javafxgui.ChatClientController;
+import javafxgui.ChatClientGUI;
 
 public class ChatClientImpl implements ChatClient {
 	private String name;
-	private String message;
 
 	public ChatClientImpl(String name) {
 		this.name = name;
 	}
 
 	public void update(String broadcastMessage) throws RemoteException {
-		System.out.println(broadcastMessage);
+		ChatClientController.updateChatBox(broadcastMessage);
 	}
 
 	@Override
@@ -22,24 +23,4 @@ public class ChatClientImpl implements ChatClient {
 		return this.name;
 	}
 
-	@Override
-	public String getMessage() throws RemoteException {
-		return this.message;
-	}
-
-	public void setMessage(String message) throws RemoteException {
-		this.message = message;
-
-	}
-	
-	public List<ChatClient> getClients(List<ChatClient> clients){		
-		return clients;
-	}
-
-	// TODO: remove setName. you don't need this
-	@Override
-	public void setName(String name) {
-		this.name = name;
-
-	}
 }

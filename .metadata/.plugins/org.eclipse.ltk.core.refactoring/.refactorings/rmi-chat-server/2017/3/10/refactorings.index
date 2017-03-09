@@ -12,3 +12,12 @@
 1488987391332	Copy compilation unit
 1488987711019	Copy compilation unit
 1488987756340	Copy compilation unit
+1489059972042	Rename method 'sayHello'
+1489059995261	Copy compilation units
+1489060062428	Rename method 'sendWelcomeMessage'
+1489060092876	Copy compilation unit
+1489061405681	Copy compilation unit
+1489061462013	Copy compilation unit
+1489061541525	Rename field 'WELCOM_MESSAGE'
+1489062794643	Copy compilation unit
+1489062872947	Rename local variable 'msg'

@@ -1,0 +1,15 @@
+package chatclient;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ChatServiceManagerTest {
+
+	@Test
+	public void test() {
+
+	
+	}
+
+}
